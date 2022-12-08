@@ -5,9 +5,12 @@
 .data
    
    input_password db 'Please Enter Your Password$'
-   password db 'qwerty$'
+   password db 'speedout$'
    incorrect_password db 10,13, 'Incorrect Password$'    
-   welcome db 10,13,10,13, 'WELCOME TO MEDICAL STORE$'
+   welcome db 10,13,10,13, 'WELCOME TO MEDICAL STORE$'     
+   auth_info db 10,13,10,13, 'Md. Mahian Islam Sadim, Biplob Kumar Sutradhar, Farabi Ahnaf Akib$'   
+   auth_sid db 10,13, '203-15-3898, 203-15-3923, 203-15-3920$'   
+   team_name db 10,13, 'From Team SPEEDOUT$'
    msg1 db 10,13,10,13, 'Choose a Option$'
    msg2 db 10,13,10,13, 'What Do You Want To Buy$'
    msg_medicines db 10,13, 'Press 1 to buy medicines$'
@@ -15,15 +18,15 @@
    input_again db 10,13, 'Please Press one of the above given keys$'
    wrong_input db 10,13, 'Wrong Input$'
    exit_program db 10,13,'Press 4 to exit$'
-   opt1 db 10,13, '1. Panadol - 4rs$'
-   opt2 db 10,13, '2. Paracetamol - 3rs$'
-   opt3 db 10,13, '3. Cleritek - 2rs$'
-   opt4 db 10,13, '4. Aspirin - 2rs$'
-   opt5 db 10,13, '5. Brufen - 1rs$'
-   opt6 db 10,13, '6. Surbex Z - 5rs$'
-   opt7 db 10,13, '7. Arinac - 4rs$'
-   opt8 db 10,13, '8. Sinopharm Vaccine - 2rs$'
-   opt9 db 10,13, '9. Pfizer Vaccine - 8rs$'
+   opt1 db 10,13, '1. Panadol - 4 tk$'
+   opt2 db 10,13, '2. Paracetamol - 3 tk$'
+   opt3 db 10,13, '3. Cleritek - 2 tk$'
+   opt4 db 10,13, '4. Aspirin - 2 tk$'
+   opt5 db 10,13, '5. Brufen - 1 tk$'
+   opt6 db 10,13, '6. Surbex Z - 5 tk$'
+   opt7 db 10,13, '7. Arinac - 4 tk$'
+   opt8 db 10,13, '8. Sinopharm Vaccine - 2 tk$'
+   opt9 db 10,13, '9. Pfizer Vaccine - 8 tk$'
    newLine db 10,13, '$'     
    msg_panadol db 10,13, 'How many panadols do you want to buy$'
    msg_paracetamol db 10,13, 'How many paracetamol do you want to buy$'
@@ -83,7 +86,7 @@ main proc
     mov ah,9
     int 21h
     mov bx,offset password
-    mov cx,6
+    mov cx,8
     
     l1:
     mov ah,1
@@ -263,7 +266,7 @@ main proc
                 
         jmp start
            
-        brufen:
+     brufen:
          
         mov dx,offset msg_brufen
         mov ah,9
@@ -298,7 +301,7 @@ main proc
                 
         jmp start
         
-        surbex:
+     surbex:
          
         mov dx,offset msg_surbex
         mov ah,9
@@ -333,7 +336,7 @@ main proc
                 
         jmp start
      
-        arinac:
+     arinac:
          
         mov dx,offset msg_arinac
         mov ah,9
@@ -366,7 +369,7 @@ main proc
                 
         jmp start
         
-        sinopharm:
+     sinopharm:
          
         mov dx,offset msg_sinopharm
         mov ah,9
@@ -399,7 +402,7 @@ main proc
                 
         jmp start
      
-        pfizer:
+     pfizer:
          
         mov dx,offset msg_pfizer
         mov ah,9
@@ -432,7 +435,7 @@ main proc
                 
         jmp start
      
-        show_amount: 
+    show_amount: 
         
         mov dx,offset amount_earned
         mov ah,9
@@ -464,6 +467,18 @@ main endp
         mov ah,9
         int 21h
         
+        mov dx,offset auth_info
+        mov ah,9
+        int 21h
+        
+        mov dx,offset auth_sid
+        mov ah,9
+        int 21h
+
+        mov dx,offset team_name
+        mov ah,9
+        int 21h
+
         mov dx,offset msg1
         mov ah,9
         int 21h
@@ -647,7 +662,10 @@ main endp
         int 21h
         
         
-        ret 
+
+        jmp start   
+        
+        
           
     medicines_stats endp     
         
